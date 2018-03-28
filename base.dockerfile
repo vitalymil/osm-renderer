@@ -15,4 +15,13 @@ RUN apt-get install -y libbz2-dev libpq-dev libproj-dev lua5.2 liblua5.2-dev npm
 
 RUN npm i -g carto
 
-RUN apt-get install -y fonts-noto-cjk fonts-noto-hinted fonts-noto-unhinted ttf-unifont
+RUN apt-get install -y fonts-noto-cjk fonts-noto-hinted fonts-noto-unhinted ttf-unifont fonts-hanazono
+
+RUN apt-get install -y python python-pip python3 python3-pip
+RUN apt-get install -y python-cairo python-setuptools
+RUN pip install pyotp
+
+RUN wget https://github.com/googlei18n/noto-fonts/raw/master/hinted/NotoSansArabicUI-Regular.ttf
+RUN wget https://github.com/googlei18n/noto-fonts/raw/master/hinted/NotoSansArabicUI-Bold.ttf
+RUN mv NotoSansArabicUI-Regular.ttf /usr/share/fonts/truetype/noto/NotoSansArabicUI-Regular.ttf
+RUN mv NotoSansArabicUI-Bold.ttf /usr/share/fonts/truetype/noto/NotoSansArabicUI-Bold.ttf

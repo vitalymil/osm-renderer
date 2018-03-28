@@ -16,9 +16,10 @@ RUN ldconfig
 WORKDIR /
 
 # Need to remove proxy config and change url to local Gitlab
-RUN git clone https://github.com/gravitystorm/openstreetmap-carto.git
+RUN git clone --branch v4.6.0 https://github.com/gravitystorm/openstreetmap-carto.git
 
 WORKDIR /openstreetmap-carto
+RUN git checkout tags/v4.6.0
 COPY project.mml .
 RUN carto project.mml > mapnik.xml
 
@@ -27,10 +28,14 @@ RUN ./scripts/get-shapefiles.py -n -u
 
 RUN mkdir /var/lib/mod_tile
 RUN mkdir /var/run/renderd
+RUN mkdir /cgi-bin
 
 COPY renderd.conf /usr/local/etc/
 COPY mod_tile.conf /etc/apache2/conf-available/
 COPY rend_site.conf /etc/apache2/sites-available/
+COPY export.py /cgi-bin/export
+
+RUN chmod 777 -R /cgi-bin/
 
 RUN a2enmod alias expires headers remoteip rewrite cgi
 RUN a2enconf mod_tile
