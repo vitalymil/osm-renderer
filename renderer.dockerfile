@@ -34,6 +34,7 @@ COPY renderd.conf /usr/local/etc/
 COPY mod_tile.conf /etc/apache2/conf-available/
 COPY rend_site.conf /etc/apache2/sites-available/
 COPY export.py /cgi-bin/export
+COPY export-shp.py /cgi-bin/export-shp
 
 RUN chmod 777 -R /cgi-bin/
 

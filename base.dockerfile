@@ -19,7 +19,7 @@ RUN apt-get install -y \
 
 RUN npm i -g carto millstone
 
-RUN pip install pyotp
+RUN pip install pyotp overpy fiona
 
 RUN wget https://github.com/googlei18n/noto-fonts/raw/master/hinted/NotoSansArabicUI-Regular.ttf
 RUN wget https://github.com/googlei18n/noto-fonts/raw/master/hinted/NotoSansArabicUI-Bold.ttf
